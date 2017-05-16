@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import DOM from 'react-dom'
 import { Motion, spring, presets } from 'react-motion'
+import Draggable from 'react-draggable';
 
 export default class HorizontalScroll extends Component {
   constructor(props) {
@@ -104,6 +105,7 @@ export default class HorizontalScroll extends Component {
         style={ styles }
         className='scroll-horizontal'
       >
+         <Draggable axis="x">
         <Motion style={ { z: spring(this.state.animValues, springConfig) } }>
           { ({z}) => {
               const scrollingElementStyles = {
@@ -114,12 +116,16 @@ export default class HorizontalScroll extends Component {
                 willChange:`transform`
               }
               return (
+
                 <div style={ scrollingElementStyles }>
                   { this.props.children }
                 </div>
+
               )
+
             } }
         </Motion>
+        </Draggable>
       </div>
     )
   }
