@@ -22,6 +22,10 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _reactMotion = require('react-motion');
 
+var _reactDraggable = require('react-draggable');
+
+var _reactDraggable2 = _interopRequireDefault(_reactDraggable);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -152,24 +156,28 @@ var HorizontalScroll = function (_Component) {
           className: 'scroll-horizontal'
         },
         _react2.default.createElement(
-          _reactMotion.Motion,
-          { style: { z: (0, _reactMotion.spring)(this.state.animValues, springConfig) } },
-          function (_ref) {
-            var z = _ref.z;
+          _reactDraggable2.default,
+          { axis: 'x' },
+          _react2.default.createElement(
+            _reactMotion.Motion,
+            { style: { z: (0, _reactMotion.spring)(this.state.animValues, springConfig) } },
+            function (_ref) {
+              var z = _ref.z;
 
-            var scrollingElementStyles = {
-              transform: 'translate3d(' + z + 'px, 0,0)',
-              display: 'inline-flex',
-              height: '100%',
-              position: 'absolute',
-              willChange: 'transform'
-            };
-            return _react2.default.createElement(
-              'div',
-              { style: scrollingElementStyles },
-              _this3.props.children
-            );
-          }
+              var scrollingElementStyles = {
+                transform: 'translate3d(' + z + 'px, 0,0)',
+                display: 'inline-flex',
+                height: '100%',
+                position: 'absolute',
+                willChange: 'transform'
+              };
+              return _react2.default.createElement(
+                'div',
+                { style: scrollingElementStyles },
+                _this3.props.children
+              );
+            }
+          )
         )
       );
     }
